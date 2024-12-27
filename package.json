@@ -1,0 +1,25 @@
+{
+  "name": "pokhonko-ithillel-autoqa-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test":"npx playwright test",
+    "test-ui":"npx playwright test --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentoforik/POkhonko-ITHillel-AutoQA-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kentoforik/POkhonko-ITHillel-AutoQA-Playwright/issues"
+  },
+  "homepage": "https://github.com/kentoforik/POkhonko-ITHillel-AutoQA-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2"
+  }
+}
