@@ -13,14 +13,14 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   /* Maximum time one test can run for. */
-  timeout: 30_000,
+  timeout: 10_000,
 
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 10_000
+    timeout: 5_000
   },
 
   testDir: './tests',
@@ -45,6 +45,10 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://qauto.forstudy.space/',
+    httpCredentials: {
+      username: 'guest',
+      password: 'welcome2qauto',
+    },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -84,7 +88,7 @@ export default defineConfig({
     // },
     {
       name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 
