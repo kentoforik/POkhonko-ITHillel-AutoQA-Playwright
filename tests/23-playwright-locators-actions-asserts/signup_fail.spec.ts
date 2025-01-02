@@ -20,6 +20,10 @@ test.describe('User Sign up', () => {
   })
 
   test.describe('is forbidden and shows appropriate error when NAME', () => {
+    test.afterEach(async ({ page }) => {
+      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
+    })
+
     test('is empty', async ({ page }) => {
       await signUpFormFiller(page, inValidUser.withoutName, signUpModalSelectors.inputs)
       const nameField = page.locator(signUpModalSelectors.inputs.nameInput)
@@ -30,8 +34,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameRequired))
         .toHaveText(signupModalErrorText.requiredName)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
 
     test('of invalid length and chars (2 errors simultaneously)', async ({ page }) => {
@@ -46,8 +48,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameLengthInvalid))
         .toHaveText(signupModalErrorText.invalidNameLength)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
 
     test('of 1 char', async ({ page }) => {
@@ -59,8 +59,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameLengthInvalid))
         .toHaveText(signupModalErrorText.invalidNameLength)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
 
     test('of 21 chars', async ({ page }) => {
@@ -72,8 +70,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameLengthInvalid))
         .toHaveText(signupModalErrorText.invalidNameLength)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
 
     test('of valid length but contains NON english chars', async ({ page }) => {
@@ -85,8 +81,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameInvalid))
         .toHaveText(signupModalErrorText.invalidName)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
 
     test('of valid length, but containing special characters and numbers', async ({ page }) => {
@@ -98,8 +92,6 @@ test.describe('User Sign up', () => {
 
       await expect(page.locator(signUpModalSelectors.nameInvalid))
         .toHaveText(signupModalErrorText.invalidName)
-
-      await expect(page.locator(signUpModalSelectors.registerBtn)).toBeDisabled()
     })
   })
 
