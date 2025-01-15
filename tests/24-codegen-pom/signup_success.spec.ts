@@ -1,15 +1,17 @@
 import { test, expect } from '@playwright/test'
-import SignupForm from '../../page-objects/forms/signUpForm'
+import SignUpForm from '../../page-objects/forms/SignUpForm'
 import { validUser } from '../test-data/user_login_data'
 import { urls } from '../../constants/urls'
+import HomePage from '../../page-objects/HomePage'
 
 test.describe('Sign up is successful', () => {
-  let signUpForm: SignupForm;
+  let signUpForm: SignUpForm;
 
   test.beforeEach(async ({ page }) => {
-    signUpForm = new SignupForm(page);
-    await page.goto('/');
-    await signUpForm.open();
+    const homePage = new HomePage(page)
+    await homePage.open()
+    const signInFrom = await homePage.openSignInForm()
+    signUpForm = await signInFrom.openSignUpForm()
   })
 
   test('with common user', async ({ page }) => {

@@ -1,10 +1,8 @@
 import { type Locator, type Page } from '@playwright/test';
-import { homePageSelectors } from '../../selectors/homePage';
-import { loginModalSelectors } from '../../selectors/logInModal'
 import { signUpModalSelectors } from '../../selectors/signUpModal';
 import { signUpModalInputs } from '../../types/signUpModal';
 
-export default class SignupForm {
+export default class SignUpForm {
   readonly page: Page;
 
   readonly nameInput: Locator;
@@ -71,11 +69,6 @@ export default class SignupForm {
         lastName: page.locator(errorSelectors.lastNameLengthInvalid),
       },
     };
-  }
-
-  async open() {
-    await this.page.locator(homePageSelectors.header.signInButton).click()
-    await this.page.locator(loginModalSelectors.registration).click()
   }
 
   async fill(userData: signUpModalInputs): Promise<void> {

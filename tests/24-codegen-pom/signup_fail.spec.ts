@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
-import SignupForm from '../../page-objects/forms/signUpForm'
+import HomePage from '../../page-objects/HomePage'
+import SignUpForm from '../../page-objects/forms/SignUpForm'
 import { inValidUser } from '../test-data/user_login_data'
 import { signupModalErrorText } from '../../constants/signUpModalTexts'
 import { invalidInputProps } from '../../constants/element_props'
@@ -7,12 +8,13 @@ import { invalidInputProps } from '../../constants/element_props'
 const invalidClassRegex = new RegExp(`\\b${invalidInputProps.classProp}\\b`)
 
 test.describe('User Sign up', () => {
-  let signUpForm: SignupForm;
+  let signUpForm: SignUpForm;
 
   test.beforeEach(async ({ page }) => {
-    signUpForm = new SignupForm(page);
-    await page.goto('/');
-    await signUpForm.open();
+    const homePage = new HomePage(page)
+    await homePage.open()
+    const signInFrom = await homePage.openSignInForm()
+    signUpForm = await signInFrom.openSignUpForm()
   })
 
   test('is failed and shows appropriate error for existing user', async ({ page }) => {

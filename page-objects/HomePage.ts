@@ -1,7 +1,8 @@
 import { type Locator, type Page } from '@playwright/test';
 import { homePageSelectors } from '../selectors/homePage';
+import SignInForm from './forms/SignInForm';
 
-class HomePage {
+export default class HomePage {
   readonly page: Page;
   readonly signInButton: Locator;
 
@@ -13,7 +14,8 @@ class HomePage {
     await this.page.goto('/')
   }
 
-  async openSignInModal() {
+  async openSignInForm() {
     await this.signInButton.click()
+    return new SignInForm(this.page)
   }
 }
