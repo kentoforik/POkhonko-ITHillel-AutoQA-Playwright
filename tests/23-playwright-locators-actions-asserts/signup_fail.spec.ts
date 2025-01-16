@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { signUpFormFiller } from '../../helpers/auth_helper'
-import { inValidUser } from './test-data/user_login_data'
+import { inValidUser } from '../test-data/user_login_data'
 import { signUpModalSelectors } from '../../selectors/signUpModal'
 import { signupModalErrorText } from '../../constants/signUpModalTexts'
 import { invalidInputProps } from '../../constants/element_props'

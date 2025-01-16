@@ -4,7 +4,7 @@ export const validUser = {
   common: {
     name: 'TestName',
     lastName: 'TestLastName',
-    email: 'kentoforik+27@gmail.com', //Increase by on on each test run
+    email: 'kentoforik+28@gmail.com', //Increase by on on each test run
     password: '1Qwertyu',
     passwordRepeat: '1Qwertyu'
   },
@@ -12,7 +12,7 @@ export const validUser = {
   allInputsMinLength: {
     name: 'Te',
     lastName: 'Te',
-    email: 'ke+27@g.co', //Increase by on on each test run
+    email: 'ke+28@g.co', //Increase by on on each test run
     password: '1Qwertyu',
     passwordRepeat: '1Qwertyu'
   },
@@ -20,7 +20,7 @@ export const validUser = {
   allInputsMaxLength: {
     name: 'TestNameTestNameTest',
     lastName: 'TestLastNameTestLast',
-    email: 'ken+27@g.co', //Increase by on on each test run
+    email: 'ken+28@g.co', //Increase by on on each test run
     password: '1Qwertyu9012345',
     passwordRepeat: '1Qwertyu9012345'
   }

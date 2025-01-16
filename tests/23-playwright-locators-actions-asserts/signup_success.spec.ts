@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { signUpFormFiller } from '../../helpers/auth_helper'
-import { validUser } from './test-data/user_login_data'
+import { validUser } from '../test-data/user_login_data'
 import { signUpModalSelectors } from '../../selectors/signUpModal'
 import { urls } from '../../constants/urls'
 
