@@ -4,25 +4,25 @@ export const validUser = {
   common: {
     name: 'TestName',
     lastName: 'TestLastName',
-    email: 'kentoforik+27@gmail.com', //Increase by on on each test run
-    password: '1Qwertyu',
-    passwordRepeat: '1Qwertyu'
+    email: process.env.VALID_TEST_USERNAME, //Increase by on on each test run
+    password: process.env.VALID_TEST_PASSWORD,
+    passwordRepeat: process.env.VALID_TEST_PASSWORD
   },
 
   allInputsMinLength: {
     name: 'Te',
     lastName: 'Te',
-    email: 'ke+27@g.co', //Increase by on on each test run
-    password: '1Qwertyu',
-    passwordRepeat: '1Qwertyu'
+    email: process.env.VALID_TEST_SHORT_USERNAME, //Increase by on on each test run
+    password: process.env.VALID_TEST_PASSWORD,
+    passwordRepeat: process.env.VALID_TEST_PASSWORD
   },
 
   allInputsMaxLength: {
     name: 'TestNameTestNameTest',
     lastName: 'TestLastNameTestLast',
-    email: 'ken+27@g.co', //Increase by on on each test run
-    password: '1Qwertyu9012345',
-    passwordRepeat: '1Qwertyu9012345'
+    email: process.env.VALID_TEST_LONG_USERNAME, //Increase by on on each test run
+    password: process.env.VALID_TEST_PASSWORD,
+    passwordRepeat: process.env.VALID_TEST_PASSWORD
   }
 }
 
@@ -30,9 +30,9 @@ export const inValidUser = {
   alreadyRegistered: {
     name: 'TestName',
     lastName: 'TestLastName',
-    email: 'kentoforik@gmail.com',
-    password: '1Qwertyu',
-    passwordRepeat: '1Qwertyu'
+    email: process.env.VALID_TEST_EXISTING_USERNAME,
+    password: process.env.VALID_TEST_PASSWORD,
+    passwordRepeat: process.env.VALID_TEST_PASSWORD
   },
   withoutName: {
     lastName: 'TestLastName',
