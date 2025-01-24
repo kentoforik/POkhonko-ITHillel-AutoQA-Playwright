@@ -23,14 +23,14 @@ export default defineConfig({
     timeout: 5_000
   },
 
-  testDir: './tests',
+  //testDir: './tests',
   // Glob patterns or regular expressions to ignore test files.
   //testIgnore: '*test-assets',
 
   // Folder for test artifacts such as screenshots, videos, traces, etc.
   outputDir: 'test-results',
   // Glob patterns or regular expressions that match test files.
-  testMatch: '**/*24*/*.spec.ts',
+  //testMatch: '**/*24*/*.spec.ts',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -87,8 +87,22 @@ export default defineConfig({
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
     {
+      name: 'Fetch authorization',
+      testDir: './authorization',
+      testMatch: '*.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: true
+      },
+    },
+    {
       name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'] },
+      testDir: './tests',
+      testMatch: '**/*24*/*.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['Fetch authorization']
     },
   ],
 
