@@ -98,9 +98,12 @@ export default defineConfig({
     {
       name: 'Google Chrome',
       testDir: './tests',
-      testMatch: '**/*24*/*.spec.ts',
+      testMatch: '**/*27*/*.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
+
+        //My test works fine with this, but I believe this is NOT what is expected from the HomeWork
+        //storageState: './storage/auth.json'
       },
       dependencies: ['Fetch authorization']
     },

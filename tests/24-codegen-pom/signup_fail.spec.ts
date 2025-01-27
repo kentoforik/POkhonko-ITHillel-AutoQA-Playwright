@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import HomePage from '../../page-objects/HomePage'
-import SignUpForm from '../../page-objects/forms/SignUpForm'
+import SignUpForm from '../../page-objects/forms/signUpForm'
 import { inValidUser } from '../test-data/user_login_data'
 import { signupModalErrorText } from '../../constants/signUpModalTexts'
 import { invalidInputProps } from '../../constants/element_props'

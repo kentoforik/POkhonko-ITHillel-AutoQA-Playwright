@@ -1,7 +1,6 @@
 import { type Locator, type Page } from '@playwright/test';
 import SignUpForm from './signUpForm';
 import { loginModalSelectors } from '../../selectors/logInModal'
-import { log } from 'console';
 
 export default class SignInForm {
   private page: Page;

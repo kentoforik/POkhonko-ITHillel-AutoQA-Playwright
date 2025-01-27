@@ -17,5 +17,6 @@ test.describe('Authorize and save state to storage', () => {
     await singInForm.logIn(username, password)
     await expect(page).toHaveURL(urls.garagePage)
     await page.context().storageState({ path: authFile });
+    await page.close()
   })
 })
