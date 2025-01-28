@@ -86,26 +86,18 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-    {
-      name: 'Fetch authorization',
-      testDir: './authorization',
-      testMatch: '*.ts',
-      use: {
-        ...devices['Desktop Chrome'],
-        headless: true
-      },
-    },
+//
     {
       name: 'Google Chrome',
       testDir: './tests',
-      testMatch: '**/*27*/*.spec.ts',
+      testMatch: '**/*28*/*.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
 
         //My test works fine with this, but I believe this is NOT what is expected from the HomeWork
         //storageState: './storage/auth.json'
       },
-      dependencies: ['Fetch authorization']
+     // dependencies: ['Fetch authorization']
     },
   ],
 
