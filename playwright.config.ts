@@ -38,7 +38,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -86,26 +86,18 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-    {
-      name: 'Fetch authorization',
-      testDir: './authorization',
-      testMatch: '*.ts',
-      use: {
-        ...devices['Desktop Chrome'],
-        headless: true
-      },
-    },
+//
     {
       name: 'Google Chrome',
       testDir: './tests',
-      testMatch: '**/*27*/*.spec.ts',
+      testMatch: '**/*28*/**/*.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
 
         //My test works fine with this, but I believe this is NOT what is expected from the HomeWork
         //storageState: './storage/auth.json'
       },
-      dependencies: ['Fetch authorization']
+     // dependencies: ['Fetch authorization']
     },
   ],
 
