@@ -36,7 +36,11 @@ jobs:
         run: docker build -t playwright-custom-image .
 
       - name: Run tests in container
-        run: docker run --rm --name playwright-container --env-file .env playwright-custom-image
+        run: |
+          mkdir -p playwright-report
+          docker run --rm \
+            -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
+            --name playwright-container playwright-tests
 
       - name: Delete .env file
         if: always()
