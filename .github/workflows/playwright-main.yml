@@ -40,7 +40,7 @@ jobs:
           mkdir -p playwright-report
           docker run --rm \
             -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
-            --name playwright-container playwright-tests
+            --name playwright-container playwright-custom-image
 
       - name: Delete .env file
         if: always()
