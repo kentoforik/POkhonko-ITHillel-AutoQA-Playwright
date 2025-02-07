@@ -40,7 +40,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -86,7 +86,7 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-//
+    //
     {
       name: 'Google Chrome',
       testDir: './tests',
@@ -97,7 +97,7 @@ export default defineConfig({
         //My test works fine with this, but I believe this is NOT what is expected from the HomeWork
         //storageState: './storage/auth.json'
       },
-     // dependencies: ['Fetch authorization']
+      // dependencies: ['Fetch authorization']
     },
   ],
 
