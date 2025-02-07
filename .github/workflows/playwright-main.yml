@@ -1,0 +1,69 @@
+name: Playwright tests in Docker
+
+on: 
+  push:
+     branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+          echo "HTTP_USERNAME=${{ secrets.HTTP_USERNAME }}" >> .env
+          echo "HTTP_PASSWORD=${{ secrets.HTTP_PASSWORD }}" >> .env
+          echo "VALID_TEST_USERNAME=${{ secrets.VALID_TEST_USERNAME }}" >> .env
+          echo "VALID_TEST_PASSWORD=${{ secrets.VALID_TEST_PASSWORD }}" >> .env
+          echo "VALID_TEST_SHORT_USERNAME=${{ secrets.VALID_TEST_SHORT_USERNAME }}" >> .env 
+          echo "VALID_TEST_LONG_USERNAME=${{ secrets.VALID_TEST_LONG_USERNAME }}" >> .env 
+          echo "VALID_TEST_EXISTING_USERNAME=${{ secrets.VALID_TEST_EXISTING_USERNAME }}" >> .env
+          echo "VALID_TEST_EXISTING_PASSWORD=${{ secrets.VALID_TEST_EXISTING_PASSWORD }}" >> .env 
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t playwright-custom-image .
+
+      - name: Run tests in container
+        run: docker run --rm --name playwright-container --env-file .env playwright-custom-image
+
+      - name: Delete .env file
+        if: always()
+        run: rm -f .env
+
+  deploy_report:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download report
+        uses: actions/download-artifact@v4
+        with:
+          name: index.html
+          path: playwright-report
+
+      - name: Deploy report to Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+
+ 
+
+      
+  

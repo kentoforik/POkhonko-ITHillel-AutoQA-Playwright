@@ -90,7 +90,7 @@ export default defineConfig({
     {
       name: 'Google Chrome',
       testDir: './tests',
-      testMatch: '**/*28*/**/*.spec.ts',
+      testMatch: ['**/*24*/**/*.spec.ts', '**/*28*/**/*.spec.ts'],
       use: {
         ...devices['Desktop Chrome'],
 
