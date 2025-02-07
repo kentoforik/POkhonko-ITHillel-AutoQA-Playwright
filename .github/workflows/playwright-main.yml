@@ -42,6 +42,14 @@ jobs:
             -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
             --name playwright-container playwright-custom-image
 
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
       - name: Delete .env file
         if: always()
         run: rm -f .env
@@ -58,7 +66,7 @@ jobs:
       - name: Download report
         uses: actions/download-artifact@v4
         with:
-          name: index.html
+          name: playwright-report
           path: playwright-report
 
       - name: Deploy report to Pages
